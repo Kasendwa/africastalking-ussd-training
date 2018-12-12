@@ -1,0 +1,9 @@
+{
+  "name": "africastalking-ussd-training",
+  "version": "0.0.1",
+  "description": "USSD training based on Africas Talking platform",
+  "main": "index.js",
+  "repository": "https://github.com/ubunifusystems/africastalking-ussd-training.git",
+  "author": "Ronald Kasendwa <rkasendwa@outlook.com>",
+  "license": "MIT"
+}
