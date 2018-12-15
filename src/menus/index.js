@@ -17,7 +17,7 @@ export default () => {
 			});
 
 			const registerInstructions = `Welcome to mSACCO
-            \nEnter your first name to register:`;
+            \nEnter your first name tos register:`;
 
 			if (typeof users !== 'undefined') {
 				const user = _.find(
