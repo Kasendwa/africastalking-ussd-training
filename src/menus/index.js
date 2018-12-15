@@ -11,10 +11,11 @@ export default () => {
 		run: () => {
 			const { phoneNumber } = menu.args;
 			const db = `./sessions/db.json`;
-			const { users } = JSONFile.readFileSync(db);
+			const data = JSONFile.readFileSync(db);
 
 			JSONFile.writeFileSync(db, {
-				users: users || [],
+				...data,
+				users: data.users || [],
 				[`${phoneNumber}`]: {}
 			});
 
