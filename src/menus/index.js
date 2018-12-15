@@ -17,7 +17,7 @@ export default () => {
 			});
 
 			const registerInstructions = `Welcome to mSACCO
-            \nEnter your first name to register:`;
+            Enter your first name to register:`;
 
 			if (typeof users !== 'undefined') {
 				const user = _.find(
@@ -27,7 +27,7 @@ export default () => {
 
 				if (typeof user !== 'undefined') {
 					menu.con(`Welcome back, ${user.first_name}!
-                        \nEnter your PIN to continue:`);
+                        Enter your PIN to continue:`);
 				} else {
 					menu.con(registerInstructions);
 				}
