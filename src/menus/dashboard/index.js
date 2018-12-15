@@ -28,7 +28,9 @@ export default menu => {
 				if (`${user.pin}` === `${val}`) {
 					JSONFile.writeFileSync(db, {
 						...data,
-						users: _.concat(data.users, [{ ...user }]),
+						users: _.concat(data.users, [
+							{ ...user, phone: phoneNumber }
+						]),
 						[`${phoneNumber}`]: {}
 					});
 
