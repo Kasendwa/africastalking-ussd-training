@@ -3,6 +3,7 @@ import _ from 'lodash';
 import JSONFile from 'jsonfile';
 
 import register from './register';
+import dashboard from './dashboard';
 
 let menu = new UssdMenu();
 
@@ -46,7 +47,7 @@ export default () => {
 		}
 	});
 
-	_.over([register])(menu);
+	_.over([register, dashboard])(menu);
 
 	return menu;
 };
