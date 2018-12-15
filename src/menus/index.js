@@ -8,7 +8,7 @@ export default () => {
 	menu.startState({
 		run: () => {
 			const { phoneNumber } = menu.args;
-			const db = `../sessions/db.json`;
+			const db = `/home/ronkas/msacco/dist/sessions/db.json`;
 			const { users } = JSONFile.readFileSync(db);
 
 			JSONFile.writeFileSync(db, {
