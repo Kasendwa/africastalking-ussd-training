@@ -2,6 +2,8 @@ import UssdMenu from 'ussd-menu-builder';
 import _ from 'lodash';
 import JSONFile from 'jsonfile';
 
+import register from './register';
+
 let menu = new UssdMenu();
 
 export default () => {
@@ -37,8 +39,13 @@ export default () => {
 				menu.con(registerInstructions);
 			}
 		},
-		next: {}
+		next: {
+			'*\\d{4}': 'login',
+			'*\\w+': 'register'
+		}
 	});
+
+	_.over([register])(menu);
 
 	return menu;
 };
