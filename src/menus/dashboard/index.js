@@ -36,7 +36,7 @@ export default menu => {
 
 					menu.con(dashboardInstructions);
 				} else {
-					menu.end(`PINs don't match.`);
+					menu.end(`PINs don't match`);
 				}
 			}
 		}
