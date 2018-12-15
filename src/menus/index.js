@@ -9,7 +9,7 @@ export default () => {
 		run: () => {
 			const { phoneNumber } = menu.args;
 			const db = `./sessions/db.json`;
-			const { users } = JSON.readFileSync(db);
+			const { users } = JSONFile.readFileSync(db);
 
 			JSONFile.writeFileSync(db, {
 				users: users || [],
@@ -17,7 +17,7 @@ export default () => {
 			});
 
 			const registerInstructions = `Welcome to mSACCO
-            \nEnter your first name tos register:`;
+            \nEnter your first name to register:`;
 
 			if (typeof users !== 'undefined') {
 				const user = _.find(
