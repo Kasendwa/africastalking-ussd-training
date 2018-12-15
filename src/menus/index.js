@@ -2,16 +2,19 @@ import UssdMenu from 'ussd-menu-builder';
 import _ from 'lodash';
 import JSONFile from 'jsonfile';
 
+import login from './login';
 import register from './register';
 import dashboard from './dashboard';
 
 let menu = new UssdMenu();
 
+const db = `./sessions/db.json`;
+
 export default () => {
 	menu.startState({
 		run: () => {
 			const { phoneNumber } = menu.args;
-			const db = `./sessions/db.json`;
+
 			const data = JSONFile.readFileSync(db);
 
 			JSONFile.writeFileSync(db, {
@@ -47,7 +50,7 @@ export default () => {
 		}
 	});
 
-	_.over([register, dashboard])(menu);
+	_.over([login, register, dashboard])(menu);
 
 	return menu;
 };
