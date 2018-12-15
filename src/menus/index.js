@@ -27,7 +27,7 @@ export default () => {
 
 			if (typeof users !== 'undefined') {
 				const user = _.find(
-					users,
+					data.users,
 					({ phone }) => phone === phoneNumber
 				);
 
