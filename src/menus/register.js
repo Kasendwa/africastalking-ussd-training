@@ -1,6 +1,8 @@
 import _ from 'lodash';
 import JSONFile from 'jsonfile';
 
+const db = `./sessions/db.json`;
+
 export default menu => {
 	menu.state('register', {
 		run: () => {
@@ -9,7 +11,6 @@ export default menu => {
 				args: { phoneNumber }
 			} = menu;
 
-			const db = `./sessions/db.json`;
 			const data = JSONFile.readFileSync(db);
 
 			JSONFile.writeFileSync(db, {
@@ -28,7 +29,16 @@ export default menu => {
 
 	menu.state('register.pin', {
 		run: () => {
-			menu.con(`Enter your preferred PIN:`);
+			const {
+				val,
+				args: { phoneNumber }
+			} = menu;
+
+			const data = JSONFile.readFileSync(db);
+
+			const { first_name } = data[`${phoneNumber}`];
+
+			menu.con(`Hi ${first_name}! \nEnter your preferred PIN:`);
 		}
 	});
 
