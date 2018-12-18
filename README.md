@@ -2,6 +2,10 @@
 
 Repository for the Dec 2018, Africas Talking USSD platform training
 
+|      Solarized dark       |     Solarized Ocean      |
+| :-----------------------: | :----------------------: |
+| ![](https://...Ocean.png) | ![](https://...Dark.png) |
+
 #### Authors
 
 -   [Africa's Taking](https://africastalking.com)
