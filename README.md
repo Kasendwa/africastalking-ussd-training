@@ -2,9 +2,9 @@
 
 Repository for the Dec 2018, Africas Talking USSD platform training
 
-|      Solarized dark       |     Solarized Ocean      |
-| :-----------------------: | :----------------------: |
-| ![](https://...Ocean.png) | ![](https://...Dark.png) |
+|                                                  iOS                                                   |                                                  Android                                                   |
+| :----------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------: |
+| ![](https://github.com/Kasendwa/africastalking-ussd-training/blob/master/docs/images/ios.jpg?raw=true) | ![](https://github.com/Kasendwa/africastalking-ussd-training/blob/master/docs/images/android.jpg?raw=true) |
 
 #### Authors
 
