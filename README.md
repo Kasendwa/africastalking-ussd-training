@@ -3,8 +3,8 @@
 Repository for the Dec 2018, Africas Talking USSD platform training
 
 <p float="left">
-  <img src="https://github.com/Kasendwa/africastalking-ussd-training/blob/master/docs/images/ios.jpg?raw=true" width="50%" />
-  <img src="https://github.com/Kasendwa/africastalking-ussd-training/blob/master/docs/images/android.jpg?raw=true" width="50%" />
+  <img src="https://github.com/Kasendwa/africastalking-ussd-training/blob/master/docs/images/ios.jpg?raw=true" width="300" />
+  <img src="https://github.com/Kasendwa/africastalking-ussd-training/blob/master/docs/images/android.jpg?raw=true" width="300" />
 </p>
 
 #### Authors
