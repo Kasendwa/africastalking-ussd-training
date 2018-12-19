@@ -2,10 +2,6 @@ import _ from 'lodash';
 import JSONFile from 'jsonfile';
 
 const db = `./sessions/db.json`;
-const limits = {
-	min: 500,
-	max: 3000000
-};
 
 export default menu => {
 	menu.state('dashboard.deposit', {
@@ -14,16 +10,16 @@ export default menu => {
 				val,
 				args: { phoneNumber, text }
 			} = menu;
-			const { min, max } = limits;
 
 			menu.con(
 				_.includes(['1', '0'], `${val}`)
 					? `Deposit Money \nEnter the amount to deposit:`
-					: `Invalid amount provided. Enter an amount between UGX ${min} and ${max}. \nTry again.`
+					: `Invalid amount provided. Enter an amount between UGX 500 and 3,000,000. \nTry again.`
 			);
 		},
 		next: {
-			[`*\\b(${limits.min}|${limits.max})\b`]: 'dashboard.deposit.instructions'
+			'*\\([5-8][0-9]{2}|9[0-8][0-9]|99[0-9]|[1-8][0-9]{3}|9[0-8][0-9]{2}|99[0-8][0-9]|999[0-9]|[1-8][0-9]{4}|9[0-8][0-9]{3}|99[0-8][0-9]{2}|999[0-8][0-9]|9999[0-9]|[1-8][0-9]{5}|9[0-8][0-9]{4}|99[0-8][0-9]{3}|999[0-8][0-9]{2}|9999[0-8][0-9]|99999[0-9]|[12][0-9]{6}|3000000)':
+				'dashboard.deposit.instructions'
 		},
 		defaultNext: 'dashboard.deposit'
 	});
