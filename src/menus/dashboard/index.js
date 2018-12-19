@@ -22,26 +22,24 @@ export default menu => {
 
 			const { lastState } = user;
 
-			menu.con(lastState);
+			JSONFile.writeFileSync(db, {
+				...data,
+				users: _.map(data.users, user => {
+					const { phone } = user;
 
-			/*if (typeof lastState === 'undefined' || lastState === 'dashboard') {
-				JSONFile.writeFileSync(db, {
-					...data,
-					users: _.map(data.users, user => {
-						const { phone } = user;
+					if (phone === phoneNumber) {
+						return { ...user, page: 0, lastState: 'dashboard' };
+					}
 
-						if (phone === phoneNumber) {
-							return { ...user, page: 0, lastState: 'dashboard' };
-						}
+					return user;
+				})
+			});
 
-						return user;
-					})
-				});
+			if (_.isEqual(user, {})) {
+				user = _.find(data.users, ({ phone }) => phone === phoneNumber);
+				const { authenticated, lastState } = user;
 
-				if (_.isEqual(user, {})) {
-					user = _.find(data.users, ({ phone }) => phone === phoneNumber);
-					const { authenticated } = user;
-
+				if (typeof lastState === 'undefined' || lastState === 'dashboard') {
 					if (typeof authenticated !== 'undefined') {
 						menu.con(dashboardInstructions);
 					} else if (`${user.pin}` === `${val}`) {
@@ -63,21 +61,21 @@ export default menu => {
 						menu.go('login.invalidPIN');
 					}
 				} else {
-					if (`${user.pin}` === `${val}`) {
-						JSONFile.writeFileSync(db, {
-							...data,
-							users: _.concat(data.users, [{ ...user, phone: phoneNumber }]),
-							[`${phoneNumber}`]: {}
-						});
-
-						menu.con(dashboardInstructions);
-					} else {
-						menu.end(`PINs don't match`);
-					}
+					menu.go(lastState);
 				}
 			} else {
-				menu.go(lastState);
-			}*/
+				if (`${user.pin}` === `${val}`) {
+					JSONFile.writeFileSync(db, {
+						...data,
+						users: _.concat(data.users, [{ ...user, phone: phoneNumber }]),
+						[`${phoneNumber}`]: {}
+					});
+
+					menu.con(dashboardInstructions);
+				} else {
+					menu.end(`PINs don't match`);
+				}
+			}
 		},
 		next: {
 			'1': 'dashboard.deposit',
