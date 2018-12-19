@@ -16,11 +16,9 @@ export default menu => {
 			} = menu;
 
 			menu.con(
-				`${text}: ${
-					_.includes(['1', '0'], `${val}`)
-						? `Deposit Money \nEnter the amount to deposit:`
-						: `Wrong input. Try again.`
-				}`
+				_.includes(['1', '0'], `${val}`)
+					? `Deposit Money \nEnter the amount to deposit:`
+					: `Wrong input. Try again.`
 			);
 		},
 		next: {
@@ -38,10 +36,8 @@ export default menu => {
 
 			val = parseFloat(val);
 
-			if (val < limits.min) {
-				menu.go('dashboard.deposit.lowAmount');
-			} else if (val > limits.max) {
-				menu.go('dashboard.deposit.highAmount');
+			if (!(val >= limits.min && val <= limits.max)) {
+				menu.go('dashboard.deposit.invalidAmount');
 			} else {
 				/* Implement actual deposit logic */
 
@@ -54,26 +50,16 @@ export default menu => {
 		defaultNext: 'invalidOption'
 	});
 
-	menu.state('dashboard.deposit.lowAmount', {
+	menu.state('dashboard.deposit.invalidAmount', {
 		run: () => {
-			const { val } = menu;
+			const { min, max } = limits;
 
-			menu.con(`Minimum acceptable amount is UGX ${limits.min}. \n0. Back`);
+			menu.con(
+				`Invalid amount provided. Enter an amount between UGX ${min} and ${max}. \n0. Back`
+			);
 		},
 		next: {
 			'0': 'dashboard.deposit'
-		},
-		defaultNext: 'invalidOption'
-	});
-
-	menu.state('dashboard.deposit.highAmount', {
-		run: () => {
-			const { val } = menu;
-
-			menu.con(`Maximum acceptable amount is UGX ${limits.max}. \n0. Back`);
-		},
-		next: {
-			'*\\d+': 'dashboard.deposit'
 		},
 		defaultNext: 'invalidOption'
 	});
