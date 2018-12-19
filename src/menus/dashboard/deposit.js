@@ -56,10 +56,10 @@ export default menu => {
 		run: () => {
 			const { val } = menu;
 
-			menu.con(`UGX ${val} is too low. Minimum acceptable amount is UGX ${limits.min}`);
+			menu.con(`Minimum acceptable amount is UGX ${limits.min}. \n0. Back`);
 		},
 		next: {
-			'*\\d+': 'dashboard.deposit.instructions'
+			'0': 'dashboard.deposit'
 		},
 		defaultNext: 'invalidOption'
 	});
@@ -68,10 +68,10 @@ export default menu => {
 		run: () => {
 			const { val } = menu;
 
-			menu.con(`UGX ${val} is too high. Maximum acceptable amount is UGX ${limits.max}`);
+			menu.con(`Maximum acceptable amount is UGX ${limits.max}. \n0. Back`);
 		},
 		next: {
-			'*\\d+': 'dashboard.deposit.instructions'
+			'*\\d+': 'dashboard.deposit'
 		},
 		defaultNext: 'invalidOption'
 	});
