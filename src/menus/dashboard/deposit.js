@@ -19,7 +19,7 @@ export default menu => {
 			menu.con(
 				_.includes(['1', '0'], `${val}`)
 					? `Deposit Money \nEnter the amount to deposit:`
-					: `Invalid amount provided. Enter an amount between UGX ${min} and ${max}. \n0. Back`
+					: `Invalid amount provided. Enter an amount between UGX ${min} and ${max}. \nTry again.`
 			);
 		},
 		next: {
