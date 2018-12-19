@@ -24,7 +24,7 @@ export default menu => {
 				if (`${user.pin}` === `${val}`) {
 					menu.con(dashboardInstructions);
 				} else {
-					menu.end('Incorrect PIN.');
+					menu.go('login.invalidPIN');
 				}
 			} else {
 				if (`${user.pin}` === `${val}`) {
