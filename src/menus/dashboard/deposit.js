@@ -55,13 +55,13 @@ export default menu => {
 			const { min, max } = limits;
 
 			menu.con(
-				`Invalid amount provided. Enter an amount between UGX ${min} and ${max}. \n0. Back`
+				`Invalid amount provided. Enter an amount between UGX ${min} and ${max}. \nTry again.`
 			);
 		},
 		next: {
-			'0': 'dashboard.deposit'
+			'*\\d+': 'dashboard.deposit.instructions'
 		},
-		defaultNext: 'invalidOption'
+		defaultNext: 'dashboard.deposit.invalidAmount'
 	});
 
 	return menu;
