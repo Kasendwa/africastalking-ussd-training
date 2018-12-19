@@ -25,26 +25,17 @@ export default () => {
 
 			const registerInstructions = `Welcome to mSACCO \nEnter your first name to register:`;
 
-			menu.con(JSON.stringify(_.map(users, ({ phone }) => phone)));
-
-			/*if (typeof users !== 'undefined') {
-				const user = _.find(
-					data.users,
-					({ phone }) => phone === phoneNumber
-				);
+			if (typeof data.users !== 'undefined') {
+				const user = _.find(data.users, ({ phone }) => phone === phoneNumber);
 
 				if (typeof user !== 'undefined') {
-					menu.con(
-						`Welcome back, ${
-							user.first_name
-						}! \nEnter your PIN to continue:`
-					);
+					menu.con(`Welcome back, ${user.first_name}! \nEnter your PIN to continue:`);
 				} else {
 					menu.con(registerInstructions);
 				}
 			} else {
 				menu.con(registerInstructions);
-			}*/
+			}
 		},
 		next: {
 			'*\\d{4}': 'login',
