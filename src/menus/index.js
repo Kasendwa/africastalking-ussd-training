@@ -19,7 +19,19 @@ export default () => {
 
 			JSONFile.writeFileSync(db, {
 				...data,
-				users: data.users || [],
+				users:
+					_.map(data.users, user => {
+						const { phone } = user;
+
+						if (phone === phoneNumber) {
+							return _.pick(
+								user,
+								_.remove(_.keys(user), key => key !== 'authenticated')
+							);
+						}
+
+						return user;
+					}) || [],
 				[`${phoneNumber}`]: {}
 			});
 

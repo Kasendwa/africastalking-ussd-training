@@ -21,7 +21,24 @@ export default menu => {
 			if (_.isEqual(user, {})) {
 				user = _.find(data.users, ({ phone }) => phone === phoneNumber);
 
-				if (`${user.pin}` === `${val}`) {
+				const { authenticated } = user;
+
+				if (typeof authenticated !== 'undefined') {
+					menu.con(dashboardInstructions);
+				} else if (`${user.pin}` === `${val}`) {
+					JSONFile.writeFileSync(db, {
+						...data,
+						users: _.map(data.users, user => {
+							const { phone } = user;
+
+							if (phone === phoneNumber) {
+								return { ...user, authenticated: true };
+							}
+
+							return user;
+						})
+					});
+
 					menu.con(dashboardInstructions);
 				} else {
 					menu.go('login.invalidPIN');
