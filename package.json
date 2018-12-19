@@ -22,6 +22,7 @@
 		"express": "^4.16.3",
 		"jsonfile": "^5.0.0",
 		"lodash": "^4.17.10",
+		"moment": "^2.23.0",
 		"ussd-menu-builder": "^1.0.0"
 	},
 	"devDependencies": {
@@ -48,11 +49,17 @@
 				}
 			]
 		],
-		"plugins": ["transform-object-rest-spread", "transform-class-properties"]
+		"plugins": [
+			"transform-object-rest-spread",
+			"transform-class-properties"
+		]
 	},
 	"eslintConfig": {
 		"parser": "babel-eslint",
-		"plugins": ["import", "jest"],
+		"plugins": [
+			"import",
+			"jest"
+		],
 		"parserOptions": {
 			"ecmaVersion": 2017,
 			"sourceType": "module"
@@ -61,7 +68,9 @@
 			"node": true,
 			"jest": true
 		},
-		"extends": ["eslint:recommended"],
+		"extends": [
+			"eslint:recommended"
+		],
 		"rules": {
 			"jest/no-focused-tests": 2,
 			"jest/no-identical-title": 2

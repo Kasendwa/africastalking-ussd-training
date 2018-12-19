@@ -1,5 +1,6 @@
 import _ from 'lodash';
 import JSONFile from 'jsonfile';
+import moment from 'moment';
 
 const db = `./sessions/db.json`;
 const limits = {
@@ -34,6 +35,26 @@ export default menu => {
 			val = parseFloat(val);
 
 			if (val >= min && val <= max) {
+				JSONFile.writeFileSync(db, {
+					...data,
+					users:
+						_.map(data.users, user => {
+							const { phone, deposits } = user;
+
+							if (phone === phoneNumber) {
+								return {
+									...user,
+									deposits: _.concat(deposits || [], [
+										{ amount: val, date: moment().format('DD/MM/YY') }
+									])
+								};
+							}
+
+							return user;
+						}) || [],
+					[`${phoneNumber}`]: {}
+				});
+
 				menu.con(`You have successfully deposited UGX ${val}. \n0. Back`);
 			} else {
 				menu.con(`Invalid amount provided. Enter an amount UGX ${min} and ${max}:`);
