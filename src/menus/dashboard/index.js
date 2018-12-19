@@ -2,6 +2,7 @@ import _ from 'lodash';
 import JSONFile from 'jsonfile';
 
 import deposit from './deposit';
+import savings from './savings';
 
 const db = `./sessions/db.json`;
 
@@ -62,7 +63,7 @@ export default menu => {
 		}
 	});
 
-	_.over([deposit])(menu);
+	_.over([deposit, savings])(menu);
 
 	return menu;
 };

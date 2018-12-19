@@ -13,7 +13,7 @@ export default menu => {
 		run: () => {
 			const {
 				val,
-				args: { phoneNumber, text }
+				args: { phoneNumber }
 			} = menu;
 			const { min, max } = limits;
 
