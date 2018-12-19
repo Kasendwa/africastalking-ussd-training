@@ -16,11 +16,7 @@ export default menu => {
 			} = menu;
 			const { min, max } = limits;
 
-			menu.con(
-				_.includes(['1', '0'], `${val}`)
-					? `Deposit Money \nEnter the amount to deposit:`
-					: `Invalid amount provided. Enter an amount UGX ${min} and ${max}:`
-			);
+			menu.con(`Deposit Money \nEnter the amount to deposit:`);
 		},
 		next: {
 			'*\\d+': 'dashboard.deposit.instructions'
@@ -40,11 +36,12 @@ export default menu => {
 			if (val >= min && val <= max) {
 				menu.con(`You have successfully deposited UGX ${val}. \n0. Back`);
 			} else {
-				menu.go('dashboard.deposit');
+				menu.con(`Invalid amount provided. Enter an amount UGX ${min} and ${max}:`);
 			}
 		},
 		next: {
-			'0': 'dashboard'
+			'0': 'dashboard',
+			'*\\d+': 'dashboard.deposit.instructions'
 		},
 		defaultNext: 'invalidOption'
 	});
