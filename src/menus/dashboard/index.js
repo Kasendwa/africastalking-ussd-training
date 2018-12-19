@@ -61,11 +61,12 @@ export default menu => {
 		},
 		next: {
 			'1': 'dashboard.deposit',
-			'2': 'dashboard.savings'
+			'2': 'dashboard.savings',
+			'3': 'dashboard.statements'
 		}
 	});
 
-	_.over([deposit, savings])(menu);
+	_.over([deposit, savings, statements])(menu);
 
 	return menu;
 };
