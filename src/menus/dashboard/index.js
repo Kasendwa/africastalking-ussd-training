@@ -59,7 +59,8 @@ export default menu => {
 			}
 		},
 		next: {
-			'1': 'dashboard.deposit'
+			'1': 'dashboard.deposit',
+			'2': 'dashboard.savings'
 		}
 	});
 
