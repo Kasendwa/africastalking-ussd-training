@@ -14,11 +14,12 @@ export default menu => {
 				val,
 				args: { phoneNumber, text }
 			} = menu;
+			const { min, max } = limits;
 
 			menu.con(
 				_.includes(['1', '0'], `${val}`)
 					? `Deposit Money \nEnter the amount to deposit:`
-					: `Wrong input. Try again.`
+					: `Invalid amount provided. Enter an amount between UGX ${min} and ${max}. \n0. Back`
 			);
 		},
 		next: {
@@ -37,7 +38,7 @@ export default menu => {
 			val = parseFloat(val);
 
 			if (!(val >= limits.min && val <= limits.max)) {
-				menu.go('dashboard.deposit.invalidAmount');
+				menu.go('dashboard.deposit');
 			} else {
 				/* Implement actual deposit logic */
 
@@ -48,20 +49,6 @@ export default menu => {
 			'0': 'dashboard'
 		},
 		defaultNext: 'invalidOption'
-	});
-
-	menu.state('dashboard.deposit.invalidAmount', {
-		run: () => {
-			const { min, max } = limits;
-
-			menu.con(
-				`Invalid amount provided. Enter an amount between UGX ${min} and ${max}. \nTry again.`
-			);
-		},
-		next: {
-			'*\\d+': 'dashboard.deposit.instructions'
-		},
-		defaultNext: 'dashboard.deposit.invalidAmount'
 	});
 
 	return menu;
