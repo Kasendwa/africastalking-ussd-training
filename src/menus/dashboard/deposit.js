@@ -14,11 +14,12 @@ export default menu => {
 				val,
 				args: { phoneNumber, text }
 			} = menu;
+			const { min, max } = limits;
 
 			menu.con(
 				_.includes(['1', '0'], `${val}`)
 					? `Deposit Money \nEnter the amount to deposit:`
-					: `Invalid amount provided. \nTry again.`
+					: `Invalid amount provided. Enter an amount UGX ${min} and ${max}:`
 			);
 		},
 		next: {
