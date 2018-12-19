@@ -35,6 +35,8 @@ export default menu => {
 			val = parseFloat(val);
 
 			if (val >= min && val <= max) {
+				const data = JSONFile.readFileSync(db);
+
 				JSONFile.writeFileSync(db, {
 					...data,
 					users:
