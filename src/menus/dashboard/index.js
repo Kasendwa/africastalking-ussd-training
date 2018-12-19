@@ -23,6 +23,19 @@ export default menu => {
 			if (_.isEqual(user, {})) {
 				user = _.find(data.users, ({ phone }) => phone === phoneNumber);
 
+				JSONFile.writeFileSync(db, {
+					...data,
+					users: _.map(data.users, user => {
+						const { phone } = user;
+
+						if (phone === phoneNumber) {
+							return { ...user, page: 0 };
+						}
+
+						return user;
+					})
+				});
+
 				const { authenticated } = user;
 
 				if (typeof authenticated !== 'undefined') {
