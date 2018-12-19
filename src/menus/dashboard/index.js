@@ -3,6 +3,7 @@ import JSONFile from 'jsonfile';
 
 import deposit from './deposit';
 import savings from './savings';
+import statements from './statements';
 
 const db = `./sessions/db.json`;
 
