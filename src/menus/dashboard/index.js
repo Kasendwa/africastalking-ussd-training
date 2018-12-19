@@ -20,22 +20,21 @@ export default menu => {
 			const data = JSONFile.readFileSync(db);
 			let user = data[`${phoneNumber}`];
 
+			JSONFile.writeFileSync(db, {
+				...data,
+				users: _.map(data.users, user => {
+					const { phone } = user;
+
+					if (phone === phoneNumber) {
+						return { ...user, page: 0 };
+					}
+
+					return user;
+				})
+			});
+
 			if (_.isEqual(user, {})) {
 				user = _.find(data.users, ({ phone }) => phone === phoneNumber);
-
-				JSONFile.writeFileSync(db, {
-					...data,
-					users: _.map(data.users, user => {
-						const { phone } = user;
-
-						if (phone === phoneNumber) {
-							return { ...user, page: 0 };
-						}
-
-						return user;
-					})
-				});
-
 				const { authenticated } = user;
 
 				if (typeof authenticated !== 'undefined') {
