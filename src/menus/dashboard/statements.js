@@ -6,8 +6,7 @@ const db = `./sessions/db.json`;
 export default menu => {
 	menu.state('dashboard.statements', {
 		run: () => {
-			menu.con('We are here');
-			/*const {
+			const {
 				val,
 				args: { phoneNumber }
 			} = menu;
@@ -22,7 +21,7 @@ export default menu => {
 				history = `${history}\n${date}: ${amount}`;
 			});
 
-			menu.con(`Statement \n${history} \n0. Back \n00. Next`);*/
+			menu.con(`Statement \n${history} \n0. Back \n00. Next`);
 		},
 		next: {
 			'0': 'dashboard'
