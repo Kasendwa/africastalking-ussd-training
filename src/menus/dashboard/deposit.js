@@ -23,7 +23,7 @@ export default menu => {
 			);
 		},
 		next: {
-			'*\\d+': 'dashboard.deposit.instructions'
+			[`*\\b(${limits.min}|${limits.max}\b`]: 'dashboard.deposit.instructions'
 		},
 		defaultNext: 'dashboard.deposit'
 	});
@@ -35,15 +35,7 @@ export default menu => {
 				args: { phoneNumber }
 			} = menu;
 
-			val = parseFloat(val);
-
-			if (!(val >= limits.min && val <= limits.max)) {
-				menu.go('dashboard.deposit');
-			} else {
-				/* Implement actual deposit logic */
-
-				menu.con(`You have successfully deposited UGX ${val}. \n0. Back`);
-			}
+			menu.con(`You have successfully deposited UGX ${val}. \n0. Back`);
 		},
 		next: {
 			'0': 'dashboard'
