@@ -46,7 +46,7 @@ export default menu => {
 
 			const { first_name } = data[`${phoneNumber}`];
 
-			menu.con(`Hi ${first_name}! \nEnter your preferred PIN:`);
+			menu.con(`Hi ${first_name}! \nEnter your preferred 4-digit PIN:`);
 		},
 		next: {
 			'*\\d{4}': 'register.pin.confirm'
@@ -83,7 +83,7 @@ export default menu => {
 
 			const { first_name } = data[`${phoneNumber}`];
 
-			menu.con(`Hi ${first_name}! \nEnter your preferred PIN again:`);
+			menu.con(`Hi ${first_name}! \nEnter your preferred 4-digit PIN again:`);
 		},
 		next: {
 			'*\\d{4}': 'dashboard'

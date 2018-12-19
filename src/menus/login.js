@@ -11,24 +11,19 @@ export default menu => {
 				args: { phoneNumber }
 			} = menu;
 
-			const data = JSONFile.readFileSync(db);
+			const { users } = JSONFile.readFileSync(db);
 
-			JSONFile.writeFileSync(db, {
-				...data,
-				[`${phoneNumber}`]: {
-					...data[`${phoneNumber}`],
-					last_name: val
-				}
-			});
+			const user = _.find(
+				users,
+				({ phone, pin }) => phone === phoneNumber && `${pin}` === `${val}`
+			);
 
-			const { first_name } = data[`${phoneNumber}`];
-
-			menu.con(`Hi ${first_name}! \nEnter your preferred PIN:`);
-		},
-		next: {
-			'*\\d{4}': 'dashboard'
-		},
-		defaultNext: 'login.invalidPIN'
+			if (user) {
+				menu.go('dashboard');
+			} else {
+				menu.go('login.invalidPIN');
+			}
+		}
 	});
 
 	menu.state('login.invalidPIN', {

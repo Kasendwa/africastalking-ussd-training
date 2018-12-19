@@ -29,7 +29,7 @@ export default () => {
 				const user = _.find(data.users, ({ phone }) => phone === phoneNumber);
 
 				if (typeof user !== 'undefined') {
-					menu.con(`Welcome back, ${user.first_name}! \nEnter your PIN to continue:`);
+					menu.con(`Welcome back, ${user.first_name}! \nEnter your 4-digit PIN to continue:`);
 				} else {
 					menu.con(registerInstructions);
 				}
