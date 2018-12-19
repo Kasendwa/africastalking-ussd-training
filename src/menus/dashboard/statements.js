@@ -15,13 +15,13 @@ export default menu => {
 			const user = _.find(data.users, ({ phone }) => phone === phoneNumber);
 			const { deposits } = user;
 
-			let history = 0;
+			let history = '';
 
 			_.forEach(deposits || [], ({ date, amount }) => {
 				history = `${history}\n${date}: ${amount}`;
 			});
 
-			menu.con(`Statement \n${history}. \n0. Back \n00. Next`);
+			menu.con(`Statement \n${history} \n0. Back \n00. Next`);
 		},
 		next: {
 			'0': 'dashboard'
