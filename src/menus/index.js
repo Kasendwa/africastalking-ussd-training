@@ -24,10 +24,13 @@ export default () => {
 						const { phone } = user;
 
 						if (phone === phoneNumber) {
-							return _.pick(
-								user,
-								_.remove(_.keys(user), key => key !== 'authenticated')
-							);
+							return {
+								..._.pick(
+									user,
+									_.remove(_.keys(user), key => key !== 'authenticated')
+								),
+								page: 0
+							};
 						}
 
 						return user;
