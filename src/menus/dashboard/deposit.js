@@ -23,7 +23,7 @@ export default menu => {
 			);
 		},
 		next: {
-			[`*\\b(${limits.min}|${limits.max}\b`]: 'dashboard.deposit.instructions'
+			[`*\\b(${limits.min}|${limits.max})\b`]: 'dashboard.deposit.instructions'
 		},
 		defaultNext: 'dashboard.deposit'
 	});
