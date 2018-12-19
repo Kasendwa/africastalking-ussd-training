@@ -20,15 +20,13 @@ export default menu => {
 			const data = JSONFile.readFileSync(db);
 			let user = data[`${phoneNumber}`];
 
-			const { lastState } = user;
-
 			JSONFile.writeFileSync(db, {
 				...data,
 				users: _.map(data.users, user => {
 					const { phone } = user;
 
 					if (phone === phoneNumber) {
-						return { ...user, page: 0, lastState: 'dashboard' };
+						return { ...user, page: 0 };
 					}
 
 					return user;
@@ -39,29 +37,25 @@ export default menu => {
 				user = _.find(data.users, ({ phone }) => phone === phoneNumber);
 				const { authenticated, lastState } = user;
 
-				if (typeof lastState === 'undefined' || lastState === 'dashboard') {
-					if (typeof authenticated !== 'undefined') {
-						menu.con(dashboardInstructions);
-					} else if (`${user.pin}` === `${val}`) {
-						JSONFile.writeFileSync(db, {
-							...data,
-							users: _.map(data.users, user => {
-								const { phone } = user;
+				if (typeof authenticated !== 'undefined') {
+					menu.con(dashboardInstructions);
+				} else if (`${user.pin}` === `${val}`) {
+					JSONFile.writeFileSync(db, {
+						...data,
+						users: _.map(data.users, user => {
+							const { phone } = user;
 
-								if (phone === phoneNumber) {
-									return { ...user, authenticated: true };
-								}
+							if (phone === phoneNumber) {
+								return { ...user, authenticated: true };
+							}
 
-								return user;
-							})
-						});
+							return user;
+						})
+					});
 
-						menu.con(dashboardInstructions);
-					} else {
-						menu.go('login.invalidPIN');
-					}
+					menu.con(dashboardInstructions);
 				} else {
-					menu.go(lastState);
+					menu.go('login.invalidPIN');
 				}
 			} else {
 				if (`${user.pin}` === `${val}`) {

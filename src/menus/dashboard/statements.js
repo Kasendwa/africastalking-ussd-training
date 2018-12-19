@@ -13,19 +13,6 @@ export default menu => {
 			} = menu;
 			const data = JSONFile.readFileSync(db);
 
-			JSONFile.writeFileSync(db, {
-				...data,
-				users: _.map(data.users, user => {
-					const { phone } = user;
-
-					if (phone === phoneNumber) {
-						return { ...user, lastState: 'dashboard.statements' };
-					}
-
-					return user;
-				})
-			});
-
 			const user = _.find(data.users, ({ phone }) => phone === phoneNumber);
 			const { deposits, page } = user;
 
