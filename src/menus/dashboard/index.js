@@ -22,7 +22,9 @@ export default menu => {
 
 			const { lastState } = user;
 
-			if (typeof lastState === 'undefined' || lastState === 'dashboard') {
+			menu.con(lastState);
+
+			/*if (typeof lastState === 'undefined' || lastState === 'dashboard') {
 				JSONFile.writeFileSync(db, {
 					...data,
 					users: _.map(data.users, user => {
@@ -75,7 +77,7 @@ export default menu => {
 				}
 			} else {
 				menu.go(lastState);
-			}
+			}*/
 		},
 		next: {
 			'1': 'dashboard.deposit',
