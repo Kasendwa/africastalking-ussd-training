@@ -5,7 +5,7 @@ import deposit from './deposit';
 
 const db = `./sessions/db.json`;
 
-const dashboardInstructions = `Choose a service to proceed: \n1. Deposit money. \n2. Check savings. \n3. View statement`;
+const dashboardInstructions = `Choose a service to proceed: \n1. Deposit money \n2. Check savings \n3. View statement`;
 
 export default menu => {
 	menu.state('dashboard', {
