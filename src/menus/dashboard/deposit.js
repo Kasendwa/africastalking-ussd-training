@@ -12,13 +12,15 @@ export default menu => {
 		run: () => {
 			const {
 				val,
-				args: { phoneNumber }
+				args: { phoneNumber, text }
 			} = menu;
 
 			menu.con(
-				_.includes(['1', '0'], `${val}`)
-					? `Deposit Money \nEnter the amount to deposit:`
-					: `Wrong input. Try again.`
+				`${text}: ${
+					_.includes(['1', '0'], `${val}`)
+						? `Deposit Money \nEnter the amount to deposit:`
+						: `Wrong input. Try again.`
+				}`
 			);
 		},
 		next: {
