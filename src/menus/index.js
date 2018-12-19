@@ -25,7 +25,9 @@ export default () => {
 
 			const registerInstructions = `Welcome to mSACCO \nEnter your first name to register:`;
 
-			if (typeof users !== 'undefined') {
+			menu.con(JSON.stringify(_.map(users, ({ phone }) => phone)));
+
+			/*if (typeof users !== 'undefined') {
 				const user = _.find(
 					data.users,
 					({ phone }) => phone === phoneNumber
@@ -42,7 +44,7 @@ export default () => {
 				}
 			} else {
 				menu.con(registerInstructions);
-			}
+			}*/
 		},
 		next: {
 			'*\\d{4}': 'login',
