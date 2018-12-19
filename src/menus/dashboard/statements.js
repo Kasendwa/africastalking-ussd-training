@@ -17,15 +17,13 @@ export default menu => {
 			const { deposits, page } = user;
 
 			const startIndex = page * perPage;
+			const records = _.slice(deposits || [], startIndex, startIndex + perPage + 1);
 
 			let history = '';
 
-			_.forEach(
-				_.slice(deposits || [], startIndex, startIndex + perPage),
-				({ date, amount }) => {
-					history = `${history}\n${date}: UGX ${amount}`;
-				}
-			);
+			_.forEach(_.slice(records, 0, perPage), ({ date, amount }) => {
+				history = `${history}\n${date}: UGX ${amount}`;
+			});
 
 			JSONFile.writeFileSync(db, {
 				...data,
@@ -40,7 +38,9 @@ export default menu => {
 				})
 			});
 
-			menu.con(`Statement ${history} \n0. Back \n00. Next`);
+			menu.con(
+				`Statement ${history} \n0. Back ${records.length > perPage ? `\n00. Next` : ''}`
+			);
 		},
 		next: {
 			'0': 'dashboard',
