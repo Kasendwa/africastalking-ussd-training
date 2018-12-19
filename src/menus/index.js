@@ -45,6 +45,12 @@ export default () => {
 		}
 	});
 
+	menu.state('invalidOption', {
+		run: () => {
+			menu.end(`Invalid option`);
+		}
+	});
+
 	_.over([login, register, dashboard])(menu);
 
 	return menu;
